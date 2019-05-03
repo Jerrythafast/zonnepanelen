@@ -646,14 +646,14 @@ EOF
 		}
 	}
 	function p1_update(){
-		var p1data = $.ajax({
+		$.ajax({
 			url: "<?php echo $DataURL?>?period=c",
 			dataType: "json",
 			type: 'GET',
 			data: { "date" : datumz },
 			success: function(data) {
 				p1data = eval(data);
-				if (p1data[0]["ServerTime"].length > 6){
+				if (p1data[0]["ServerTime"] != null){
 					p1servertime = p1data[0]["ServerTime"];
 					p1CounterToday = p1data[0]["CounterToday"];
 					p1CounterDelivToday = p1data[0]["CounterDelivToday"];
@@ -748,7 +748,7 @@ EOF
 				}
 
 			},
-			error : function(xhr, textStatus, errorThrown ) {
+			error : function() {
 				   document.getElementById("elec_text").innerHTML = "Fout: <?php echo $DataURL?>";
 				},
 			cache: false,
