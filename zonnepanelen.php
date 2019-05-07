@@ -5,7 +5,7 @@
 
 	function errorHandler($error_level, $error_message, $error_file, $error_line, $error_context)
 	{
-		$error = "Error level: " . $error_level . " <br>\nError message:" . $error_message . " <br>\nfile:" . $error_file . " <br>\nline:" . $error_line;
+		$error = "Level: " . $error_level . " <br>\nMessage: " . $error_message . " <br>\nFile: " . $error_file . " <br>\nLine: " . $error_line;
 		switch ($error_level) {
 			case E_ERROR:
 			case E_CORE_ERROR:
@@ -47,7 +47,7 @@
 			case E_CORE_WARNING:
 			case E_COMPILE_WARNING:
 			case E_PARSE:
-				$error = "[SHUTDOWN] level:" . $lasterror['type'] . " <br>\nmsg:" . $lasterror['message'] . " <br>\nfile:" . $lasterror['file'] . " <br>\nline:" . $lasterror['line'];
+				$error = "[SHUTDOWN] level: " . $lasterror['type'] . " <br>\nMessage: " . $lasterror['message'] . " <br>\nFile:" . $lasterror['file'] . " <br>\nLine: " . $lasterror['line'];
 				mylog($error, "fatal");
 		}
 	}
@@ -56,12 +56,14 @@
 
 		if($errlvl == "fatal") {
 			echo "<div style=background-color:Red;color:white;>\n";
-			echo "<p>We found a problem in the PHP code:<br>\n$errlvl  => $error<br>\n";
+			echo "<H3>We found a problem in the PHP code:</H3>\n";
+			echo "Severity: $errlvl<br><br>$error<br><br>\n";
 			echo "The website can't be shown until this issue is fixed.</p>\n";
 			echo "</div>";
 		} else {
 			echo "<div style=background-color:orange;color:white;>\n";
-			echo "<p>We found a problem in the PHP code: $errlvl  => $error<br>\n";
+			echo "<H3>We found a problem in the PHP code:</H3>\n";
+			echo "Severity: $errlvl<br><br>$error<br><br>\n";
 			echo "The website will likely lack infomation.</p>\n";
 			echo "</div>";
 		}
